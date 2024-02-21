@@ -55,7 +55,7 @@ spec:
       default: "false"
     - name: USER_ID
       description: The user ID of the builder image user.
-      default: "1000"
+      default: "1001"
     - name: GROUP_ID
       description: The group ID of the builder image user.
       default: "1000"
