@@ -89,7 +89,7 @@ const html = `
   </head>
   <body>
     <section>
-      Welcome to n
+      Welcome to
     </section>
   </body>
 </html>
