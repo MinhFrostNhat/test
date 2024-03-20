@@ -1,5 +1,7 @@
 const express = require("express");
 const winston = require("winston");
+const axios = require("axios");
+
 const app = express();
 const port = 3000;
 
@@ -58,7 +60,7 @@ const html = `
       setInterval(() => {
         document.querySelector('section').innerHTML = 'Welcome to haha' + ' ' + counter;
         counter++;
-      }, 100);
+      }, 1000); // Change interval to 1000 milliseconds (1 second)
     </script>
     <style>
       @import url("https://p.typekit.net/p.css?s=1&k=vnd5zic&ht=tk&f=39475.39476.39477.39478.39479.39480.39481.39482&a=18673890&app=typekit&e=css");
@@ -89,8 +91,21 @@ const html = `
   </head>
   <body>
     <section>
-      Welcome to
+      Welcome to 
     </section>
   </body>
 </html>
 `;
+
+// Simulate concurrent requests
+const concurrentRequests = 100;
+for (let i = 0; i < concurrentRequests; i++) {
+  axios.get(`http://localhost:${port}`)
+    .then(response => {
+      console.log(`Request ${i + 1} completed`);
+    })
+    .catch(error => {
+      console.error(`Error in request ${i + 1}: ${error.message}`);
+    });
+}
+
