@@ -1,7 +1,7 @@
 const express = require("express");
 const winston = require("winston");
 const app = express();
-const port = 8080;
+const port = 3000;
 
 const logger = winston.createLogger({
   level: "info",
@@ -53,6 +53,12 @@ const html = `
           disableForReducedMotion: true
         });
       }, 500);
+
+      let counter = 0;
+      setInterval(() => {
+        document.querySelector('section').innerHTML = 'Welcome to haha' + ' ' + counter;
+        counter++;
+      }, 10000);
     </script>
     <style>
       @import url("https://p.typekit.net/p.css?s=1&k=vnd5zic&ht=tk&f=39475.39476.39477.39478.39479.39480.39481.39482&a=18673890&app=typekit&e=css");
@@ -83,7 +89,7 @@ const html = `
   </head>
   <body>
     <section>
-      Welcome to Dome GTAAAAAAA!
+      Welcome to 
     </section>
   </body>
 </html>
