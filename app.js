@@ -6,7 +6,7 @@ const port = 3000;
 const logger = winston.createLogger({
   level: "info",
   format: winston.format.json(),
-  defaultMeta: { service: "user-service" },
+  defaultMeta: { service: "user-serviceasdqwedfsa" },
   transports: [
     new winston.transports.Console({
       format: winston.format.simple(),
