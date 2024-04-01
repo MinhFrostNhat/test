@@ -6,7 +6,7 @@ const port = 3000;
 const logger = winston.createLogger({
   level: "info",
   format: winston.format.json(),
-  defaultMeta: { service: "user-serviceasdqwedfsa" },
+  defaultMeta: { service: "user-service" },
   transports: [
     new winston.transports.Console({
       format: winston.format.simple(),
@@ -21,7 +21,7 @@ logger.log({
 
 logger.log({
   level: "info",
-  message: "Creating Express app Welcome to Dome! This is from main branch new commit hash newakuwq task",
+  message: "Creating Express app",
 });
 
 logger.log({
@@ -42,7 +42,7 @@ const html = `
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Welcome to Dome! This is from main branch new commit hash newakuwq task !</title>
+    <title>Welcome to Dome! This is from main branch !</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
       setTimeout(() => {
@@ -74,7 +74,7 @@ const html = `
         border-radius: 1em;
         padding: 1em;
         position: absolute;
-        top: 50%;
+        top: 70%;
         left: 50%;
         margin-right: -50%;
         transform: translate(-50%, -50%);
