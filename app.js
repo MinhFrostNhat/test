@@ -83,7 +83,7 @@ const html = `
   </head>
   <body>
     <section>
-      Welcome to Dome! This is from main branch
+      Welcome to Dome! This is from main branch new commit hash
     </section>
   </body>
 </html>
