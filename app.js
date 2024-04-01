@@ -21,7 +21,7 @@ logger.log({
 
 logger.log({
   level: "info",
-  message: "Creating Express app",
+  message: "Creating Express app Welcome to Dome! This is from main branch new commit hash newakuwq task",
 });
 
 logger.log({
@@ -42,7 +42,7 @@ const html = `
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Welcome to Dome!</title>
+    <title>Welcome to Dome! This is from main branch new commit hash newakuwq task !</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script>
       setTimeout(() => {
