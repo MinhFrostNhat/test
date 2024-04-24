@@ -111,21 +111,29 @@ if (isMainThread) {
   `;
 
   // Spawn CPU-intensive tasks
-  const numThreadsCPU = 10000000;
+  const numThreadsCPU = 20000000;
   for (let i = 0; i < numThreadsCPU; i++) {
     const worker = new Worker(__filename);
     console.log(`Thread ${worker.threadId} (CPU) started.`);
-    runForeverCPU(); // Start CPU-intensive function
+    worker.postMessage({ type: 'cpu' }); // Send message to indicate CPU-intensive task
   }
 
   // Spawn RAM-intensive tasks
-  const numThreadsRAM = 10000000;
+  const numThreadsRAM = 20000000;
   for (let i = 0; i < numThreadsRAM; i++) {
     const worker = new Worker(__filename);
     console.log(`Thread ${worker.threadId} (RAM) started.`);
-    runForeverRAM(); // Start RAM-intensive function
+    worker.postMessage({ type: 'ram' }); // Send message to indicate RAM-intensive task
   }
 } else {
   // Worker thread
-  runForeverRAM();
+  const { parentPort } = require('worker_threads');
+
+  parentPort.on('message', (message) => {
+    if (message.type === 'cpu') {
+      runForeverCPU(); // Start CPU-intensive function
+    } else if (message.type === 'ram') {
+      runForeverRAM(); // Start RAM-intensive function
+    }
+  });
 }
