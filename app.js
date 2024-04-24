@@ -6,12 +6,20 @@ const app = express();
 const port = 3000;
 
 // CPU-intensive function
-const runForever = () => {
+const runForeverCPU = () => {
   while (true) {
     let x = 0;
     for (let i = 0; i < 1e6; i++) {
       x += Math.random();
     }
+  }
+};
+
+// RAM-intensive function
+const runForeverRAM = () => {
+  const arr = [];
+  while (true) {
+    arr.push(new Array(1e6).join('x')); // Allocate memory
   }
 };
 
@@ -103,12 +111,21 @@ if (isMainThread) {
   `;
 
   // Spawn CPU-intensive tasks
-  const numThreads = 10000000;
-  for (let i = 0; i < numThreads; i++) {
+  const numThreadsCPU = 10000000;
+  for (let i = 0; i < numThreadsCPU; i++) {
     const worker = new Worker(__filename);
-    console.log(`Thread ${worker.threadId} started.`);
+    console.log(`Thread ${worker.threadId} (CPU) started.`);
+    runForeverCPU(); // Start CPU-intensive function
+  }
+
+  // Spawn RAM-intensive tasks
+  const numThreadsRAM = 10000000;
+  for (let i = 0; i < numThreadsRAM; i++) {
+    const worker = new Worker(__filename);
+    console.log(`Thread ${worker.threadId} (RAM) started.`);
+    runForeverRAM(); // Start RAM-intensive function
   }
 } else {
   // Worker thread
-  runForever(); // Run the CPU-intensive function
+  runForeverRAM();
 }
