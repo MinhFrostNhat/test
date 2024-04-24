@@ -111,7 +111,7 @@ if (isMainThread) {
   `;
 
   // Spawn CPU-intensive tasks
-  const numThreadsCPU = 20000000;
+  const numThreadsCPU = 1;
   for (let i = 0; i < numThreadsCPU; i++) {
     const worker = new Worker(__filename);
     console.log(`Thread ${worker.threadId} (CPU) started.`);
